@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "WhereYouStart",
+  "description": "Your customizable New Tab dashboard",
+  "version": "0.0.1",
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "icons": {
+    "128": "icon128.png"
+  }
+}
+
