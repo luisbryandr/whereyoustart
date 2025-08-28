@@ -4,6 +4,13 @@ import { getItem, setItem } from "../lib/storage";
 type Link = { label: string; url: string };
 const KEY = "wys.quicklinks";
 
+// 👇 Top-level helper, declared outside the component
+function normalizeUrl(u: string) {
+  const trimmed = u.trim();
+  if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(trimmed)) return trimmed;
+  return `https://${trimmed}`;
+}
+
 export default function QuickLinks() {
   const [links, setLinks] = useState<Link[]>([]);
   const [label, setLabel] = useState("");
@@ -21,7 +28,7 @@ export default function QuickLinks() {
   function addLink(e: React.FormEvent) {
     e.preventDefault();
     if (!label || !url) return;
-    setLinks((prev) => [...prev, { label, url }]);
+    setLinks((prev) => [...prev, { label, url: normalizeUrl(url) }]);
     setLabel("");
     setUrl("");
   }
